@@ -1,0 +1,150 @@
+ionosphere-simulated-x
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.7943262411347518
+
+
+Total number of Active Learning Instances : 127
+
+
+
+Extra instances added due to knowledge base similarity : 32
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy                                  f1-score
+0                55  0.800000   [0.717948717948718, 0.8450704225352113]
+2                13  0.769231  [0.8421052631578948, 0.5714285714285715]
+1                10  1.000000                                [1.0, 1.0]
+3                49  0.877551              [0.8125, 0.9090909090909091]
+
+
+SIMILAR INSTANCES METRICS
+
+     No. of similar Instances Similar Instances  Similar Instances Shared Label  Accuracy    f1-score  Annotator
+338                         1             [254]                               1       1.0       [1.0]          0
+233                         1             [323]                               1       1.0       [1.0]          0
+84                          1             [343]                               1       1.0       [1.0]          0
+341                         3   [273, 195, 203]                               1       1.0       [1.0]          0
+273                         1             [256]                               1       1.0       [1.0]          0
+181                         1             [183]                               1       1.0       [1.0]          0
+276                         1             [237]                               1       1.0       [1.0]          0
+144                         1              [32]                               1       1.0       [1.0]          0
+32                          3      [10, 44, 30]                               0       0.0  [0.0, 0.0]          0
+160                         2        [152, 156]                               0       1.0       [1.0]          3
+103                         1             [292]                               1       1.0       [1.0]          3
+30                          1              [46]                               1       1.0       [1.0]          3
+155                         3   [304, 239, 259]                               1       1.0       [1.0]          3
+46                          2          [20, 54]                               1       1.0       [1.0]          3
+243                         2        [241, 303]                               0       0.0  [0.0, 0.0]          3
+203                         1             [346]                               1       1.0       [1.0]          3
+241                         1             [101]                               0       0.0  [0.0, 0.0]          3
+303                         3   [321, 349, 129]                               1       1.0       [1.0]          3
+101                         2          [48, 36]                               1       1.0       [1.0]          3
+349                         1              [86]                               0       0.0  [0.0, 0.0]          3
+
+
+KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data       After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                                 1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.900709                [0.825, 0.9306930693069307]
+W Optimal                                       1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.900709                [0.825, 0.9306930693069307]
+Majority                                        0.9  [0.888888888888889, 0.9090909090909091]                                  0.787234  [0.7115384615384615, 0.8314606741573034]                                    0.843972   [0.7755102040816325, 0.8804347826086957]
+True Labels                                     1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.921986   [0.8705882352941177, 0.9441624365482233]
+
+
+KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                           1.0                                   [1.0, 1.0]                           0.811024  [0.7818181818181817, 0.8333333333333333]
+Maximum Index                                              1.0                                   [1.0, 1.0]                           0.803150  [0.7706422018348623, 0.8275862068965517]
+
+
+WITHOUT KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data       After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                                 1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.907801   [0.8395061728395062, 0.9353233830845772]
+W Optimal                                       1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.900709                [0.825, 0.9306930693069307]
+Majority                                        0.9  [0.888888888888889, 0.9090909090909091]                                  0.787234  [0.7115384615384615, 0.8314606741573034]                                    0.886525   [0.8095238095238095, 0.9191919191919191]
+True Labels                                     1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.914894   [0.8571428571428571, 0.9393939393939394]
+
+
+WITHOUT KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                           1.0                                   [1.0, 1.0]                               0.84   [0.8431372549019608, 0.836734693877551]
+Maximum Index                                              1.0                                   [1.0, 1.0]                               0.86  [0.8599999999999999, 0.8599999999999999]
+
+
+Total number of Active Learning Instances : 133
+
+
+
+Extra instances added due to knowledge base similarity : 18
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy                                  f1-score
+0                48  0.791667  [0.7222222222222223, 0.8333333333333334]
+2                30  0.800000  [0.8000000000000002, 0.8000000000000002]
+1                25  0.800000  [0.8484848484848485, 0.7058823529411764]
+3                27  0.962963   [0.9565217391304348, 0.967741935483871]
+
+
+SIMILAR INSTANCES METRICS
+
+     No. of similar Instances Similar Instances  Similar Instances Shared Label  Accuracy    f1-score  Annotator
+233                         1             [323]                               1       1.0       [1.0]          0
+253                         2        [337, 215]                               1       1.0       [1.0]          0
+160                         1             [156]                               0       1.0       [1.0]          0
+341                         3   [151, 195, 155]                               1       1.0       [1.0]          0
+237                         1             [239]                               1       1.0       [1.0]          0
+144                         1              [20]                               1       1.0       [1.0]          0
+20                          1             [103]                               0       0.0  [0.0, 0.0]          0
+155                         1             [317]                               1       1.0       [1.0]          2
+321                         3   [243, 303, 141]                               1       1.0       [1.0]          2
+141                         1             [203]                               1       1.0       [1.0]          2
+273                         2        [343, 276]                               1       1.0       [1.0]          3
+259                         1              [99]                               1       1.0       [1.0]          3
+
+
+KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data       After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                                 1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.879433    [0.7848101265822784, 0.916256157635468]
+W Optimal                                       1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.858156   [0.7368421052631579, 0.9029126213592233]
+Majority                                        0.9  [0.888888888888889, 0.9090909090909091]                                  0.787234  [0.7115384615384615, 0.8314606741573034]                                    0.822695   [0.7368421052631579, 0.8663101604278075]
+True Labels                                     1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.900709   [0.8333333333333334, 0.9292929292929293]
+
+
+KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                           1.0                                   [1.0, 1.0]                           0.819549  [0.8032786885245901, 0.8333333333333333]
+Maximum Index                                              1.0                                   [1.0, 1.0]                           0.819549  [0.7999999999999999, 0.8356164383561644]
+
+
+WITHOUT KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data       After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                                 1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.865248   [0.7532467532467533, 0.9073170731707317]
+W Optimal                                       1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.865248   [0.7532467532467533, 0.9073170731707317]
+Majority                                        0.9  [0.888888888888889, 0.9090909090909091]                                  0.787234  [0.7115384615384615, 0.8314606741573034]                                    0.843972   [0.7500000000000001, 0.8865979381443299]
+True Labels                                     1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.907801    [0.8470588235294116, 0.934010152284264]
+
+
+WITHOUT KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                           1.0                                   [1.0, 1.0]                           0.796117  [0.8108108108108109, 0.7789473684210525]
+Maximum Index                                              1.0                                   [1.0, 1.0]                           0.796117  [0.8073394495412843, 0.7835051546391754]

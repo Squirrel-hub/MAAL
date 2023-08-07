@@ -1,0 +1,3 @@
+,Annotator Accuracy after Warmup on Boot Data,Annotator F1 Score after Warmup on Boot Data,Annotator Accuracy after Training,Annotator F1 Score after Training
+Weighted Average,1.0,[1. 1.],0.7642276422764228,[0.74336283 0.78195489]
+Maximum Index,1.0,[1. 1.],0.7967479674796748,[0.76635514 0.82014388]

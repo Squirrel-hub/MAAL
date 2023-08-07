@@ -1,0 +1,10 @@
+kc2-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.9
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.8421052631578948

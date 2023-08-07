@@ -1,0 +1,39 @@
+{
+  "dataset": "medical",
+  "data_folder_path": "/Users/kaizer/Documents/Active Learning/Code/MAAL/Multi-Annotator-HIL/datasets",
+  "budget_frac": 0.4,
+  "boot_size": 0.05,
+  "test_size": 0.4,
+  "boot_lr": 1e-05,
+  "boot_n_epochs": 1000,
+  "boot_log_epochs": 10,
+  "boot_batchsize": 4,
+  "active_lr": 1e-05,
+  "active_n_epochs": 400,
+  "active_log_epochs": 1000,
+  "active_batchsize": 16,
+  "hidden_dim": 32,
+  "instance_strategy": "random",
+  "LR_max_iter": 2000,
+  "classifier_name": "logistic_regression",
+  "f1_average": "macro",
+  "log_dir": "logs/medical/",
+  "seed": 0,
+  "labeling_type": "max",
+  "exp_name": "Trial_1",
+  "use_Knowledge_Base": true,
+  "similarity_threshold": 0.95,
+  "weight_threshold": 0.7,
+  "data_source": "mapal",
+  "Data_path": "/Users/kaizer/Documents/Active Learning/Code/MAAL/Multi-Annotator-HIL/datasets/medical.csv",
+  "Path_results": "results/Knowledge_Base/medical-0.4-0.95-0.7",
+  "Path_mapal_data": "data_processing/medical-0.4",
+  "exp_txt_path": "results/Knowledge_Base/medical-0.4-0.95-0.7/comparison.txt"
+}medical
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+medical
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7

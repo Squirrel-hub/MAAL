@@ -1,0 +1,180 @@
+biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.8033175355450237
+
+
+Total number of Active Learning Instances : 194
+
+
+
+Extra instances added due to knowledge base similarity : 76
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy                                  f1-score
+0                94  0.925532  [0.9345794392523364, 0.9135802469135803]
+1                35  0.971429   [0.975609756097561, 0.9655172413793104]
+4                16  0.875000   [0.888888888888889, 0.8571428571428571]
+2                21  0.857143                [0.88, 0.8235294117647058]
+3                 6  0.666667                 [0.7499999999999999, 0.5]
+
+
+SIMILAR INSTANCES METRICS
+
+      No. of similar Instances     Similar Instances  Similar Instances Shared Label  Accuracy                   f1-score  Annotator
+628                          1                 [693]                               0  1.000000                      [1.0]          0
+483                          1                 [418]                               1  0.000000                 [0.0, 0.0]          0
+230                          4   [26, 272, 734, 546]                               1  0.500000  [0.0, 0.6666666666666666]          0
+615                          2            [136, 819]                               0  0.500000  [0.6666666666666666, 0.0]          0
+451                          2            [936, 279]                               0  0.500000  [0.6666666666666666, 0.0]          0
+407                          2            [302, 406]                               0  1.000000                      [1.0]          0
+985                          1                 [563]                               0  1.000000                      [1.0]          0
+987                          2             [789, 93]                               0  0.500000  [0.6666666666666666, 0.0]          0
+558                          3       [705, 751, 893]                               0  0.666667                 [0.8, 0.0]          0
+895                          4  [606, 841, 766, 102]                               1  0.500000  [0.0, 0.6666666666666666]          0
+190                          1                 [711]                               1  0.000000                 [0.0, 0.0]          0
+747                          2            [768, 129]                               0  0.500000  [0.6666666666666666, 0.0]          0
+620                          3       [760, 371, 931]                               0  1.000000                      [1.0]          0
+32                           1                  [45]                               1  1.000000                      [1.0]          0
+163                          1                 [118]                               1  1.000000                      [1.0]          0
+227                          2             [95, 225]                               1  1.000000                      [1.0]          0
+129                          2            [176, 130]                               1  1.000000                      [1.0]          0
+417                          1                 [440]                               0  1.000000                      [1.0]          0
+991                          1                 [271]                               0  0.000000                 [0.0, 0.0]          0
+903                          1                 [975]                               1  0.000000                 [0.0, 0.0]          0
+595                          1                 [898]                               0  0.000000                 [0.0, 0.0]          0
+1                            1                  [21]                               1  1.000000                      [1.0]          0
+768                          1                 [754]                               0  1.000000                      [1.0]          0
+170                          2            [929, 221]                               1  0.500000  [0.0, 0.6666666666666666]          0
+375                          1                 [376]                               1  0.000000                 [0.0, 0.0]          0
+660                          1                 [669]                               0  1.000000                      [1.0]          0
+231                          1                 [917]                               1  0.000000                 [0.0, 0.0]          0
+376                          1                 [377]                               0  1.000000                      [1.0]          0
+839                          1                 [203]                               1  1.000000                      [1.0]          0
+377                          1                 [146]                               0  0.000000                 [0.0, 0.0]          0
+898                          1                  [75]                               1  1.000000                      [1.0]          0
+146                          1                 [360]                               1  0.000000                 [0.0, 0.0]          0
+460                          2           [1012, 687]                               1  0.000000                 [0.0, 0.0]          0
+687                          1                 [461]                               1  0.000000                 [0.0, 0.0]          0
+864                          1                 [840]                               1  1.000000                      [1.0]          0
+766                          1                 [729]                               0  1.000000                      [1.0]          0
+271                          1                 [997]                               1  0.000000                 [0.0, 0.0]          0
+752                          1                 [859]                               0  0.000000                 [0.0, 0.0]          0
+77                           1                 [261]                               1  1.000000                      [1.0]          0
+853                          1                  [87]                               1  1.000000                      [1.0]          1
+689                          1                 [326]                               0  1.000000                      [1.0]          1
+933                          1                 [771]                               0  1.000000                      [1.0]          1
+378                          3       [460, 839, 263]                               0  0.333333                 [0.5, 0.0]          1
+153                          2           [206, 1046]                               1  0.500000  [0.0, 0.6666666666666666]          1
+170                          1                  [68]                               1  1.000000                      [1.0]          1
+1027                         1                 [596]                               0  1.000000                      [1.0]          1
+14                           1                 [182]                               1  1.000000                      [1.0]          1
+10                           1                 [794]                               1  0.000000                 [0.0, 0.0]          1
+155                          1                 [905]                               1  1.000000                      [1.0]          1
+489                          1                 [907]                               0  0.000000                 [0.0, 0.0]          1
+77                           1                 [798]                               1  0.000000                 [0.0, 0.0]          4
+740                          1                [1031]                               0  1.000000                      [1.0]          4
+87                           1                 [352]                               1  0.000000                 [0.0, 0.0]          2
+283                          1                 [800]                               1  0.000000                 [0.0, 0.0]          2
+
+
+KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data        After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                            0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.855450    [0.8924162257495591, 0.779783393501805]
+W Optimal                                  0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.876777   [0.9051094890510949, 0.8243243243243243]
+Majority                                   0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.876777   [0.9051094890510949, 0.8243243243243243]
+True Labels                                0.967742  [0.9767441860465117, 0.9473684210526316]                                  0.786730  [0.8404255319148936, 0.6785714285714285]                                    0.853081   [0.8896797153024911, 0.7801418439716312]
+
+
+KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                      0.935484     [0.9500000000000001, 0.9090909090909091]                           0.876289   [0.889908256880734, 0.8588235294117648]
+Maximum Index                                         0.935484     [0.9500000000000001, 0.9090909090909091]                           0.896907  [0.9090909090909091, 0.8809523809523809]
+
+
+WITHOUT KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data        After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                            0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.845972   [0.8869565217391304, 0.7583643122676579]
+W Optimal                                  0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.853081     [0.89198606271777, 0.7703703703703704]
+Majority                                   0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.853081     [0.89198606271777, 0.7703703703703704]
+True Labels                                0.967742  [0.9767441860465117, 0.9473684210526316]                                  0.786730  [0.8404255319148936, 0.6785714285714285]                                    0.850711    [0.8926746166950597, 0.754863813229572]
+
+
+WITHOUT KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                      0.935484     [0.9500000000000001, 0.9090909090909091]                           0.920455  [0.9306930693069307, 0.9066666666666667]
+Maximum Index                                         0.935484     [0.9500000000000001, 0.9090909090909091]                           0.920455  [0.9313725490196078, 0.9054054054054054]biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.8033175355450237
+
+
+WITH MAJORITY LABEL CLASSIFIER METRIC
+
+             After Warmup Accuracy on Boot Data        After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Majority                               0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.831754   [0.8747795414462082, 0.7436823104693141]
+True Labels                            0.967742  [0.9767441860465117, 0.9473684210526316]                                  0.786730  [0.8404255319148936, 0.6785714285714285]                                    0.843602   [0.8858131487889273, 0.7518796992481203]
+
+
+WITH MAJORITY LABEL CLASSIFIER METRIC
+
+             After Warmup Accuracy on Boot Data        After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Majority                               0.903226  [0.9268292682926829, 0.8571428571428572]                                  0.793839  [0.8438061041292638, 0.6968641114982578]                                    0.831754   [0.8747795414462082, 0.7436823104693141]
+True Labels                            0.967742  [0.9767441860465117, 0.9473684210526316]                                  0.786730  [0.8404255319148936, 0.6785714285714285]                                    0.843602   [0.8858131487889273, 0.7518796992481203]biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.7890995260663507biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.7890995260663507biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.7890995260663507biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+biodegradation-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7

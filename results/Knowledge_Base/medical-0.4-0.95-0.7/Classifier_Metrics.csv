@@ -1,0 +1,5 @@
+,After Warmup Accuracy on Boot Data,After Warmup F1 Score on Boot Data,After Warmup Accuracy on Validation Data,After Warmup F1 Score on Validation Data,After Training Accuracy on Validation Data,After Training F1 Score on Validation Data
+Annotator Model,0.75,[0.5        0.83333333],0.6608695652173913,[0.31578947 0.77456647],0.7913043478260869,[0.42857143 0.87234043]
+W Optimal,1.0,[1. 1.],0.8,[0.37837838 0.88082902],0.7130434782608696,[0.44067797 0.80701754]
+Majority,0.75,[0.66666667 0.8       ],0.5478260869565217,[0.35       0.65333333],0.6782608695652174,[0.43076923 0.77575758]
+True Labels,1.0,[1. 1.],0.8,[0.37837838 0.88082902],0.7739130434782608,[0.38095238 0.86170213]

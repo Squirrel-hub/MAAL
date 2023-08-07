@@ -1,0 +1,4 @@
+reports-mozilla
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7

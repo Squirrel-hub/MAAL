@@ -1,0 +1,71 @@
+reports-mozilla
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 4
+
+
+MAPAL Accuracy : 0.6296296296296298
+
+
+
+
+Total number of Active Learning Instances : 250
+
+
+
+Extra instances added due to knowledge base similarity : 0
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy  f1-score
+4                44  0.909091  0.826357
+3                25  0.760000  0.773496
+0                55  0.836364  0.625834
+1                71  0.788732  0.717735
+2                34  0.647059  0.608392
+
+
+SIMILAR INSTANCES METRICS
+
+Empty DataFrame
+Columns: []
+Index: []
+
+
+KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data  After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data  After Training F1 Score on Validation Data
+Annotator Model                                0.85                            0.764773                                  0.566667                                  0.474463                                    0.651852                                    0.571394
+W Optimal                                      0.85                            0.682749                                  0.596296                                  0.415695                                    0.625926                                    0.540337
+Majority                                       1.00                            1.000000                                  0.625926                                  0.499801                                    0.625926                                    0.557458
+True Labels                                    1.00                            1.000000                                  0.625926                                  0.499801                                    0.629630                                    0.546790
+
+
+KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data  Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training  Annotator F1 Score after Training
+Weighted Average                                          0.90                                      0.708333                              0.740                           0.706431
+Maximum Index                                             0.85                                      0.764773                              0.768                           0.732431
+
+
+WITHOUT KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data  After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data  After Training F1 Score on Validation Data
+Annotator Model                                0.85                            0.764773                                  0.566667                                  0.474463                                    0.618519                                    0.536510
+W Optimal                                      0.85                            0.682749                                  0.596296                                  0.415695                                    0.637037                                    0.555003
+Majority                                       1.00                            1.000000                                  0.625926                                  0.499801                                    0.607407                                    0.529026
+True Labels                                    1.00                            1.000000                                  0.625926                                  0.499801                                    0.651852                                    0.565817
+
+
+WITHOUT KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data  Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training  Annotator F1 Score after Training
+Weighted Average                                          0.90                                      0.708333                           0.700461                           0.654686
+Maximum Index                                             0.85                                      0.764773                           0.723502                           0.685547
+
+

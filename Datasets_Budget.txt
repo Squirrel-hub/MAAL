@@ -1,0 +1,32 @@
+
+Medical
+Budget fraction : 0.4
+Budget : 413
+
+Reports Mozilla
+Budget fraction : 0.2
+Budget : 405
+
+Reports Compendium
+Budget fraction : 0.2
+Budget : 577
+
+Iris
+Budget fraction : 0.4
+Budget : 180
+
+biodegradation
+Budget fraction : 0.2
+Budget : 633
+
+ionosphere
+Budget fraction : 0.4
+Budget : 168
+
+vehicle
+Budget fraction : 0.4
+Budget : 812
+
+seeds
+Budget fraction : 0.4
+Budget : 302

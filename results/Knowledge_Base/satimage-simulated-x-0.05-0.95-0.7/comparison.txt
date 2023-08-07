@@ -1,0 +1,8 @@
+satimage-simulated-x
+Budget : 0.05
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+satimage-simulated-x
+Budget : 0.05
+Similarity Threshold : 0.95
+Weight Threshold : 0.7

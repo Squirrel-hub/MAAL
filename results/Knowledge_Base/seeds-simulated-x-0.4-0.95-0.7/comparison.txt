@@ -1,0 +1,104 @@
+seeds-simulated-x
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 3
+
+
+MAPAL Accuracy : 0.9285714285714286
+
+
+Total number of Active Learning Instances : 66
+
+
+
+Extra instances added due to knowledge base similarity : 26
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy  f1-score
+5                19  0.842105  0.758480
+4                10  0.500000  0.416667
+0                 6  0.500000  0.388889
+1                 6  1.000000  1.000000
+3                 2  1.000000  1.000000
+2                10  1.000000  1.000000
+
+
+SIMILAR INSTANCES METRICS
+
+     No. of similar Instances Similar Instances  Similar Instances Shared Label  Accuracy  f1-score  Annotator
+21                          1             [138]                               0  0.000000  0.000000          5
+49                          2          [137, 0]                               0  0.500000  0.333333          5
+133                         1             [139]                               1  1.000000  1.000000          5
+139                         1              [74]                               1  1.000000  1.000000          5
+74                          1              [76]                               1  1.000000  1.000000          5
+36                          1              [37]                               0  1.000000  1.000000          5
+161                         1             [163]                               0  0.000000  0.000000          4
+165                         1             [179]                               2  1.000000  1.000000          4
+10                          2         [43, 100]                               2  0.000000  0.000000          4
+75                          1              [80]                               1  1.000000  1.000000          4
+61                          2         [199, 60]                               1  0.000000  0.000000          0
+195                         2        [197, 142]                               2  1.000000  1.000000          0
+65                          3         [7, 2, 3]                               0  1.000000  1.000000          3
+148                         2          [26, 12]                               2  0.000000  0.000000          2
+15                          3     [129, 132, 6]                               0  0.333333  0.250000          2
+21                          1              [20]                               0  1.000000  1.000000          2
+20                          1              [13]                               0  1.000000  1.000000          2
+
+
+KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data  After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data  After Training F1 Score on Validation Data
+Annotator Model                            0.666667                            0.555556                                  0.476190                                  0.436207                                    0.940476                                    0.946223
+W Optimal                                  0.666667                            0.555556                                  0.607143                                  0.528917                                    0.916667                                    0.918202
+Majority                                   1.000000                            1.000000                                  0.773810                                  0.766137                                    0.928571                                    0.933094
+True Labels                                1.000000                            1.000000                                  0.773810                                  0.766137                                    0.940476                                    0.943765
+
+
+KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data  Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training  Annotator F1 Score after Training
+Weighted Average                                      0.333333                                      0.355556                           0.666667                           0.616584
+Maximum Index                                         0.500000                                      0.433333                           0.772727                           0.755725
+
+
+WITHOUT KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data  After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data  After Training F1 Score on Validation Data
+Annotator Model                            0.666667                            0.555556                                  0.476190                                  0.436207                                    0.916667                                    0.917670
+W Optimal                                  0.666667                            0.555556                                  0.607143                                  0.528917                                    0.892857                                    0.896314
+Majority                                   1.000000                            1.000000                                  0.773810                                  0.766137                                    0.928571                                    0.932804
+True Labels                                1.000000                            1.000000                                  0.773810                                  0.766137                                    0.940476                                    0.941791
+
+
+WITHOUT KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data  Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training  Annotator F1 Score after Training
+Weighted Average                                      0.333333                                      0.355556                           0.641509                           0.630769
+Maximum Index                                         0.500000                                      0.433333                           0.716981                           0.692451seeds-simulated-x
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 3
+
+
+MAPAL Accuracy : 0.9047619047619048seeds-simulated-x
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 3
+
+
+MAPAL Accuracy : 0.9047619047619048seeds-simulated-x
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7

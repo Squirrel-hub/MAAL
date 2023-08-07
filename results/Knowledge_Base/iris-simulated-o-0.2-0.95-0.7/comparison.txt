@@ -1,0 +1,80 @@
+iris-simulated-o
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 3
+
+
+MAPAL Accuracy : 0.8833333333333334
+
+
+Total number of Active Learning Instances : 25
+
+
+
+Extra instances added due to knowledge base similarity : 7
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy  f1-score
+3                 9  0.888889  0.470588
+2                 7  0.571429  0.444444
+1                 3  0.000000  0.000000
+0                 5  0.800000  0.619048
+
+
+SIMILAR INSTANCES METRICS
+
+    No. of similar Instances Similar Instances  Similar Instances Shared Label  Accuracy  f1-score  Annotator
+6                          1              [15]                               0       1.0       1.0          3
+82                         2          [57, 93]                               1       1.0       1.0          2
+23                         1              [26]                               1       0.0       0.0          2
+27                         1              [49]                               0       1.0       1.0          2
+7                          1              [23]                               2       0.0       0.0          1
+20                         1              [25]                               0       1.0       1.0          0
+
+
+KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data  After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data  After Training F1 Score on Validation Data
+Annotator Model                                0.50                            0.444444                                  0.400000                                  0.316716                                    0.633333                                    0.540621
+W Optimal                                      0.00                            0.000000                                  0.000000                                  0.000000                                    0.650000                                    0.588672
+Majority                                       0.25                            0.133333                                  0.100000                                  0.060606                                    0.466667                                    0.373333
+True Labels                                    1.00                            1.000000                                  0.783333                                  0.765105                                    0.850000                                    0.853659
+
+
+KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data  Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training  Annotator F1 Score after Training
+Weighted Average                                          0.75                                      0.555556                                0.6                           0.414286
+Maximum Index                                             0.50                                      0.444444                                0.6                           0.395767
+
+
+Total number of Active Learning Instances : 26
+
+
+
+Extra instances added due to knowledge base similarity : 6
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy  f1-score
+3                 8     0.750  0.285714
+0                 8     0.875  0.636364
+1                 5     0.200  0.166667
+2                 4     0.750  0.428571
+
+
+SIMILAR INSTANCES METRICS
+
+    No. of similar Instances Similar Instances  Similar Instances Shared Label  Accuracy  f1-score  Annotator
+6                          2          [15, 46]                               0       1.0       1.0          3
+46                         1              [32]                               0       1.0       1.0          3
+10                         1               [0]                               1       0.0       0.0          3
+12                         2          [41, 20]                               0       1.0       1.0          0

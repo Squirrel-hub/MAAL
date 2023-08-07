@@ -1,0 +1,46 @@
+reports-compendium
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+reports-compendium
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+reports-compendium
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 4
+
+
+MAPAL Accuracy : 0.5688311688311689
+
+
+Total number of Active Learning Instances : 241
+
+
+
+Extra instances added due to knowledge base similarity : 3
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy  f1-score
+3                 9       1.0       1.0
+4                 4       1.0       1.0
+1                 4       1.0       1.0
+2                 6       1.0       1.0
+0                 5       1.0       1.0
+
+
+SIMILAR INSTANCES METRICS
+
+Empty DataFrame
+Columns: []
+Index: []reports-compendium
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7

@@ -1,0 +1,12 @@
+vehicle-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+vehicle-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+vehicle-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7

@@ -1,0 +1,10 @@
+reports-compendium
+Budget : 0.4
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 4
+
+
+MAPAL Accuracy : 0.5740259740259741

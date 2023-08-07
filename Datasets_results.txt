@@ -1,0 +1,76 @@
+Medical
+Budget : 0.4
+
+Number of classes : 2
+
+MAPAL : 0.8347826086956522
+With KNOWLEDGE BASE : 0.791304
+Without KNOWLEDGE BASE : 0.739130
+Fully Supervised : 
+
+
+Reports Mozilla
+Budget : 0.2
+
+Number of classes : 4
+
+MAPAL : 0.6296296296296298
+With KNOWLEDGE BASE : 0.651852
+Without KNOWLEDGE BASE : 0.618519
+
+Iris-simulated-x
+Budget : 0.4
+
+Number of classes : 3
+
+MAPAL : 0.9333333333333333
+With KNOWLEDGE BASE : 0.966667
+Without KNOWLEDGE BASE : 0.966667
+
+biodegradation-simulated-x
+Budget : 0.2
+
+Number of classes : 2
+
+MAPAL : 0.8033175355450237
+With KNOWLEDGE BASE : 0.855450
+Without KNOWLEDGE BASE : 0.845972
+
+ionosphere
+Budget : 0.4
+
+Number of classes : 2
+
+MAPAL : 0.7943262411347518
+With KNOWLEDGE BASE : 0.879433
+Without KNOWLEDGE BASE : 0.865248
+
+
+vehicle-simulated-x
+Budget : 0.4
+
+Number of classes : 4
+
+MAPAL : 0.6873156342182891
+With KNOWLEDGE BASE : 0.713864
+Without KNOWLEDGE BASE : 0.678466
+
+
+vertebra-column-simulated-x
+Budget : 0.4
+
+Number of classes : 3
+
+MAPAL : 0.7580645161290323
+With KNOWLEDGE BASE : 0.774194
+Without KNOWLEDGE BASE : 0.750000
+
+seeds-simulated-x
+Budget : 0.4
+
+Number of classes : 0.3
+
+MAPAL : 0.9285714285714286
+With KNOWLEDGE BASE : 0.940476
+Without KNOWLEDGE BASE : 0.916667
+

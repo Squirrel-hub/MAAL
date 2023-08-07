@@ -1,0 +1,80 @@
+ionosphere-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.7872340425531915
+
+
+Total number of Active Learning Instances : 72
+
+
+
+Extra instances added due to knowledge base similarity : 8
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy                                  f1-score
+0                37  0.810811   [0.7407407407407407, 0.851063829787234]
+2                 8  0.875000                 [0.9090909090909091, 0.8]
+1                 9  1.000000                                     [1.0]
+3                18  0.888889  [0.8888888888888888, 0.8888888888888888]
+
+
+SIMILAR INSTANCES METRICS
+
+     No. of similar Instances Similar Instances  Similar Instances Shared Label  Accuracy f1-score  Annotator
+338                         1             [254]                               1       1.0    [1.0]          0
+233                         1             [323]                               1       1.0    [1.0]          0
+84                          1             [343]                               1       1.0    [1.0]          0
+341                         2        [273, 195]                               1       1.0    [1.0]          0
+273                         1             [256]                               1       1.0    [1.0]          0
+160                         2        [152, 156]                               0       1.0    [1.0]          3
+
+
+KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data       After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                                 1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.865248   [0.7532467532467533, 0.9073170731707317]
+W Optimal                                       1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.893617    [0.810126582278481, 0.9261083743842364]
+Majority                                        0.9  [0.888888888888889, 0.9090909090909091]                                  0.787234  [0.7115384615384615, 0.8314606741573034]                                    0.900709   [0.8333333333333334, 0.9292929292929293]
+True Labels                                     1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.907801   [0.8433734939759036, 0.9346733668341708]
+
+
+KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                           1.0                                   [1.0, 1.0]                           0.791667  [0.8051948051948052, 0.7761194029850746]
+Maximum Index                                              1.0                                   [1.0, 1.0]                           0.833333   [0.8421052631578947, 0.823529411764706]
+
+
+
+WITHOUT KNOWLEDGE BASE CLASSIFIER METRIC
+
+                 After Warmup Accuracy on Boot Data       After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data After Training F1 Score on Validation Data
+Annotator Model                                 1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.879433    [0.7848101265822784, 0.916256157635468]
+W Optimal                                       1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.893617    [0.810126582278481, 0.9261083743842364]
+Majority                                        0.9  [0.888888888888889, 0.9090909090909091]                                  0.787234  [0.7115384615384615, 0.8314606741573034]                                    0.900709                [0.825, 0.9306930693069307]
+True Labels                                     1.0                               [1.0, 1.0]                                  0.780142  [0.5866666666666668, 0.8502415458937199]                                    0.907801   [0.8505747126436781, 0.9333333333333335]
+
+
+WITHOUT KNOWLEDGE BASE ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training         Annotator F1 Score after Training
+Weighted Average                                           1.0                                   [1.0, 1.0]                           0.790323  [0.8115942028985509, 0.7636363636363634]
+Maximum Index                                              1.0                                   [1.0, 1.0]                           0.806452  [0.8235294117647058, 0.7857142857142856]ionosphere-simulated-x
+Budget : 0.2
+Similarity Threshold : 0.95
+Weight Threshold : 0.7
+
+
+Number of classes : 2
+
+
+MAPAL Accuracy : 0.7872340425531915
