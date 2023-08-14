@@ -36,8 +36,8 @@ def main():
     parser = argparse.ArgumentParser()
     # Data
     parser.add_argument("--dataset",default='iris-simulated-x')
-    parser.add_argument("--data_folder_path", default="/Users/kaizer/Documents/Active Learning/Code/MAAL/Multi-Annotator-HIL/datasets")
-    parser.add_argument("--budget_frac", type=float, default=0.2)
+    parser.add_argument("--data_folder_path", default="datasets")
+    parser.add_argument("--budget_frac", type=float, default=0.4)
     parser.add_argument("--boot_size", type=float, default=0.05)
     parser.add_argument("--test_size", type=float, default=0.4)
     # Boot
@@ -55,7 +55,7 @@ def main():
     parser.add_argument("--instance_strategy", default="random") 
     parser.add_argument("--method",default="KB")
 
-    parser.add_argument("--LR_max_iter", type=int, default=20000)
+    parser.add_argument("--LR_max_iter", type=int, default=10000)
     parser.add_argument("--classifier_name", default="logistic_regression") # logistic_regression, neural_net, xgboost
     parser.add_argument("--f1_average", default="macro")
     # Misc

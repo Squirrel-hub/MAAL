@@ -1,0 +1,64 @@
+{
+  "dataset": "wine-simulated-x",
+  "data_folder_path": "datasets",
+  "budget_frac": 0.4,
+  "boot_size": 0.05,
+  "test_size": 0.4,
+  "boot_lr": 0.0001,
+  "boot_n_epochs": 10,
+  "boot_log_epochs": 30000,
+  "boot_batchsize": 4,
+  "active_lr": 0.0001,
+  "active_n_epochs": 10,
+  "active_log_epochs": 20000,
+  "active_batchsize": 16,
+  "hidden_dim": 32,
+  "instance_strategy": "random",
+  "method": "KB",
+  "LR_max_iter": 10000,
+  "classifier_name": "logistic_regression",
+  "f1_average": "macro",
+  "log_dir": "logs/iris-simulated-x/",
+  "seed": 1,
+  "labeling_type": "max",
+  "exp_name": "Trial_1",
+  "use_Knowledge_Base": true,
+  "similarity_threshold": 0.95,
+  "weight_threshold": 0.7,
+  "data_source": "mapal",
+  "w_opt": 1,
+  "rl_flag": 0,
+  "ee_ratio": 0.8,
+  "Data_path": "datasets/wine-simulated-x.csv",
+  "Path_results": "results/Knowledge_Base/wine-simulated-x-0.4-0.95-0.7",
+  "Path_mapal_data": "data_processing\\wine-simulated-x-0.4",
+  "exp_txt_path": "results/Knowledge_Base/wine-simulated-x-0.4-0.95-0.7/comparison.txt"
+}
+
+MAPAL Accuracy : 0.875
+
+
+
+Number of classes : 3
+
+
+
+Fully Supervised
+
+Accuracy : 0.9305555555555556
+F1 Score : 0.9349970291146762
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy  f1-score
+1                 1  0.000000  0.000000
+4                 3  0.666667  0.666667
+0                 1  1.000000  1.000000
+
+
+SIMILAR INSTANCES METRICS
+
+Empty DataFrame
+Columns: []
+Index: []

@@ -8,15 +8,15 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classifica
 def eval_annotator_model(annotator_model, x_data, y_data, y_annot_data, inst_annot, device = 'cpu',average=None): ##Not important for Validation Set
     
     x_data = x_data.to_numpy()
-    x_data = torch.tensor(x_data).float().to(device)
+    x_data = torch.from_numpy(x_data).to(device)
 
     y_data = y_data.to_numpy()
-    y_data = torch.tensor(y_data).float().to(device)
+    y_data = torch.from_numpy(y_data).to(device)
 
     y_annot_data = y_annot_data.to_numpy()
-    y_annot_data = torch.tensor(y_annot_data).float().to(device)
+    y_annot_data = torch.from_numpy(y_annot_data).to(device)
 
-    #x_data = torch.tensor(x_data,dtype=torch.float32).clone().detach()
+    x_data = torch.tensor(x_data,dtype=torch.float32).clone().detach()
     y_data = y_data.detach().numpy()
 
     annotator_model = annotator_model.to(device)
@@ -53,6 +53,7 @@ def eval_annotator_model(annotator_model, x_data, y_data, y_annot_data, inst_ann
 
     a2 = accuracy_score(mo,y_data)
     f2 = f1_score(mo,y_data,average=average)
+
 
     # print('Metrics for Weighted Label selection ')
     # print(confusion_matrix(wo,y_data))

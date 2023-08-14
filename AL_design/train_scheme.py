@@ -13,6 +13,8 @@ from torch.utils.data import Dataset, DataLoader
 from annotator.Model import Annotator
 import matplotlib.pyplot as plt
 from knowledge_base.utils import Knowledge_Base_similarity
+from annotator.trainer import annotator_training
+
 
 
 def append_dataframe(x_new,y_true,y_annot,y_new,y_new_opt,y_new_majority,w_new,masks_new,x_boot,y_annot_boot,classifier_y_boot,W_optimal,m):
@@ -313,10 +315,10 @@ def AL_train_cycle_KB(Classifiers,Classifier_y_boot,annotator_selector,Knowledge
         c_f = []
 
         m = y_annot_active.shape[1]
-        # input_dim = x_boot.shape[1]
-        # H_dim = args.hidden_dim
-        # output_dim = y_annot_boot.shape[1]
-        # annotator_model = annotator_selector.model.to(device)
+        input_dim = x_boot.shape[1]
+        H_dim = args.hidden_dim
+        output_dim = y_annot_boot.shape[1]
+        annotator_selector.model = annotator_selector.model.to(device)
 
         pbar = tqdm.tqdm(desc = 'Progress Bar ', total = budget)
         epoch = 1
@@ -358,10 +360,10 @@ def AL_train_cycle_KB(Classifiers,Classifier_y_boot,annotator_selector,Knowledge
                 continue
 
             # TRAINING THE ANNOTATOR MODEL
-            #annotator_model = Annotator(input_dim,output_dim,H_dim)
-            #annotator_model = annotator_model.to(device)
-            loss_list, accuracy, f_1 = annotator_selector.train(training_args,new_active_x,new_active_y_annot,new_active_y_true , new_active_w,new_active_mask,train_phase="train")
-            #annotator_model, loss_list = annotator_training(annotator_model, new_active_x, new_active_w, new_active_mask,training_args["batch_size"],training_args["n_epochs"], training_args["lr"], device = device)
+            annotator_selector.model = Annotator(input_dim,H_dim,output_dim)
+            annotator_selector.model = annotator_selector.model.to(device)
+            #loss_list, accuracy, f_1 = annotator_selector.train(training_args,new_active_x,new_active_y_annot,new_active_y_true , new_active_w,new_active_mask,train_phase="train")
+            loss_list = annotator_selector.training( new_active_x, new_active_w, new_active_mask,training_args["batch_size"],training_args["n_epochs"], training_args["lr"], device = device)
             
             loss.append(loss_list[-1])
             
@@ -438,7 +440,7 @@ def AL_train_cycle(Classifiers,Classifier_y_boot,annotator_selector,BOOT,ACTIVE,
         input_dim = x_boot.shape[1]
         H_dim = args.hidden_dim
         output_dim = y_annot_boot.shape[1]
-        annotator_model = annotator_selector.model.to(device)
+        annotator_selector.model = annotator_selector.model.to(device)
 
         for epoch in tqdm.tqdm(range(budget)):
 
@@ -477,11 +479,11 @@ def AL_train_cycle(Classifiers,Classifier_y_boot,annotator_selector,BOOT,ACTIVE,
                 continue
 
             # TRAINING THE ANNOTATOR MODEL
-            # annotator_model = Annotator(input_dim,output_dim,H_dim)
-            # annotator_model = annotator_model.to(device)
-            loss_list, accuracy, f_1 = annotator_selector.train(training_args,new_active_x,new_active_y_annot,new_active_y_true , new_active_w,new_active_mask,train_phase="train")
-            #annotator_model, loss_list = annotator_training(annotator_model, new_active_x, new_active_w, \
-            #                 new_active_mask,training_args["batch_size"],training_args["n_epochs"], training_args["lr"], device = device)
+            annotator_selector.model = Annotator(input_dim,H_dim,output_dim)
+            annotator_selector.model = annotator_selector.model.to(device)
+            # loss_list, accuracy, f_1 = annotator_selector.train(training_args,new_active_x,new_active_y_annot,new_active_y_true , new_active_w,new_active_mask,train_phase="train")
+            loss_list = annotator_selector.training( new_active_x, new_active_w, \
+                             new_active_mask,training_args["batch_size"],training_args["n_epochs"], training_args["lr"], device = device)
             
             loss.append(loss_list[-1])
             
@@ -724,10 +726,10 @@ def AL_train_MAPAL_instances(Classifiers,Classifier_y_boot,annotator_selector,in
                 continue
 
             # TRAINING THE ANNOTATOR MODEL
-            # annotator_model = Annotator(input_dim,output_dim,H_dim)
-            # annotator_model = annotator_model.to(device)
-            loss_list, accuracy, f_1 = annotator_selector.train(training_args,new_active_x,new_active_y_annot,new_active_y_true , new_active_w,new_active_mask,train_phase="train")
-            #annotator_model, loss_list = annotator_training(annotator_model, new_active_x, new_active_w, new_active_mask,training_args["batch_size"],training_args["n_epochs"], training_args["lr"], device = device)
+            annotator_selector.model = Annotator(input_dim,H_dim,output_dim)
+            annotator_selector.model = annotator_selector.model.to(device)
+            #loss_list, accuracy, f_1 = annotator_selector.train(training_args,new_active_x,new_active_y_annot,new_active_y_true , new_active_w,new_active_mask,train_phase="train")
+            loss_list = annotator_selector.training(new_active_x, new_active_w, new_active_mask,training_args["batch_size"],training_args["n_epochs"], training_args["lr"], device = device)
             loss.append(loss_list[-1])
             
             # REMOVE INSTANCES FOR WHICH ALL ANNOTATORS ARE QUERIED

@@ -11,6 +11,8 @@ from scipy.optimize import linprog
 import matplotlib.pyplot as plt
 from Lpp.utils import weights_optimal
 from Loaders.dataset_loaders import Data, Data_AL
+import matplotlib.pyplot as plt
+import random
 
 from annotator.Model import Annotator as AnnotatorModel
 from annotator.utils import get_weighted_labels, get_majority_labels, get_max_labels
@@ -30,9 +32,15 @@ class AnnotatorSelector:
             self.writer = None
 
     def initialize_model(self):
-        torch.manual_seed(self.seed)
-        return AnnotatorModel(n_features=self.n_features, n_annotators=self.n_annotators,hidden_dim=self.hidden_dim).to(self.device)
+        self.set_seed(self.seed)
+        return AnnotatorModel(n_features=self.n_features, hidden_dim=self.hidden_dim,n_annotators=self.n_annotators).to(self.device)
     
+
+    def set_seed(self,seed: int = 1) -> None:  ## Set SEEDS FUNCTION
+        np.random.seed(seed)
+        random.seed(seed)
+        torch.manual_seed(seed)
+        print(f"Random seed set as {seed}")
 
     def write_to_tensorboard(self, epoch, data, type="train"):
         for key in data:
@@ -50,40 +58,75 @@ class AnnotatorSelector:
             # input()
         return np.array(annotator_weights)
     
-    # Create annotator weight using agreement-disagreement between annotator labels using linear programming
-    def get_annotator_lp_weights(self, annotator_labels, annotator_mask):
-        annotator_weights = []
-        n_annotators = len(annotator_labels[0])
-        for i in range(len(annotator_labels)):
-            if annotator_mask[i].sum() == 1: # If only a single annotator, its weight will be 1 and rest 0.
-                annotator_weights.append(annotator_mask[i].copy())
-                continue
-            A_eq = np.zeros((n_annotators, n_annotators))
-            b_eq = np.zeros(n_annotators)
-            for j in range(n_annotators):
-                if annotator_mask[i][j] == 0: # Annotator is not queried. So not part of equation
+
+
+    def coeff_annot(self,arr,idx,inst_annot):
+        ones = 0
+        m = len(inst_annot)
+        
+        coefficients = [1 for i in range(m)]
+
+        for i in range(len(arr)):
+            if inst_annot[idx] == 0 :
+                # print('inst_annot[i] : ',inst_annot[i])
+                coefficients[idx] = 0
+                coefficients[i] = 0
+            elif inst_annot[i] == 0:
+                coefficients[i] = 0
+            else :
+                if i == idx:
+                    coefficients[idx] = sum(inst_annot)-1
                     continue
-                for k in range(n_annotators):
-                    if j == k:
-                        A_eq[j, k] = annotator_mask[i].sum() - 1
-                    elif annotator_mask[i][k] == 0:
-                        A_eq[j, k] = 0
-                    elif annotator_labels[i][j] == annotator_labels[i][k]:
-                        A_eq[j, k] = -1
-                    else:
-                        A_eq[j, k] = 1
-                        b_eq[j] += 1
-            c = np.ones(n_annotators) * -1
-            res = linprog(c, A_eq=A_eq, b_eq=b_eq, bounds=(0, 1))
-            if not res.success:
-                print("ERROR: Linear Programming not solvable")
-                print(annotator_labels[i])
-                print(annotator_mask[i])
-                print(A_eq)
-                print(b_eq)
-                exit()
-            annotator_weights.append(res.x)
-        return np.array(annotator_weights)
+                if arr[i] == arr[idx] :
+                    coefficients[i] = -1
+                else : 
+                    coefficients[i] = 1
+                    ones = ones + 1
+        # print('coefficients : ',coefficients)
+        # print('ones : ',ones)
+        return coefficients,ones
+
+    def weights_optimal(self,y_annot,inst_annot):
+        W_optimal = []
+        A_ub_list = []
+        b_ub_list = []
+        masks = []
+        #print(type(y_annot_boot))
+
+        m = inst_annot.shape[1]
+        for i in range(m):
+            arr1 = [0 for i in range(m)]
+            arr1[i] = 1
+            A_ub_list.append(arr1)
+            arr2 = [0 for i in range(m)]
+            arr2[i] = -1
+            A_ub_list.append(arr2)
+            b_ub_list.append(1)
+            b_ub_list.append(0)
+
+
+        A_ub = np.array(A_ub_list)
+        b_ub = np.array(b_ub_list)
+        c    = np.array([-1 for i in range(m)])
+
+
+        for i,j in zip(y_annot,inst_annot):
+            A_eq_list = []
+            b_eq_list = []
+            for idx in range(m):
+                coefficients,ones = self.coeff_annot(i,idx,j)
+                A_eq_list.append(coefficients)
+                b_eq_list.append(ones)
+            
+            A_eq = np.array(A_eq_list)
+            b_eq = np.array(b_eq_list)
+
+            # Solve linear programming problem
+            res = linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq)
+            W_optimal.append(res.x)
+            masks.append(j)
+            
+        return W_optimal
     
     def get_annotator_model_weights(self, instances):
         if not torch.is_tensor(instances):
@@ -98,181 +141,61 @@ class AnnotatorSelector:
         return annotator_weights
     
     
-    def warmup(self,args,boot_x, boot_annotator_labels, boot_y):
+    def warmup(self,x_boot, y_annot_boot,mask=None,batch_size = 4,n_epochs=1000,learning_rate=0.001, device='cpu'):
+        self.model = self.model.to(device)
+        if mask.any() == None:
+            mask = np.ones_like(y_annot_boot)
+        W_optimal = weights_optimal(y_annot_boot.to_numpy(),mask)
+        W_optimal = pd.DataFrame(W_optimal,index = list(x_boot.index.values))
+        mask = pd.DataFrame(mask,index = list(x_boot.index.values))
+        loss_list = self.training(x_boot,W_optimal,mask,batch_size,n_epochs,learning_rate,device)
     
-        mask = np.ones_like(boot_annotator_labels)
-        boot_optimal_weights = weights_optimal(boot_annotator_labels.to_numpy(),mask)
-        boot_optimal_weights = pd.DataFrame(boot_optimal_weights,index = list(boot_x.index.values))
-        boot_annotator_mask = pd.DataFrame(mask,index = list(boot_x.index.values))
-        loss, accuracy, f_1 = self.train(args,boot_x,boot_annotator_labels, boot_y, boot_optimal_weights,boot_annotator_mask,train_phase="boot")
-        self.boot_optimal_weights = boot_optimal_weights
+        plt.figure()
+        plt.plot(loss_list)
+        plt.title('Annotator Model Warmup Training')
+        plt.xlabel('Epoch')
+        plt.ylabel('Loss')
+        return W_optimal,loss_list
+
         
-    def train(self, 
-            args,
-            train_x, 
-            train_annotator_labels, 
-            train_y, 
-            train_annotator_weights = None, 
-            train_annotator_mask = None,
-            eval_x=None,
-            eval_annotator_labels=None, 
-            eval_annotator_weights=None, 
-            eval_y=None, 
-            eval_annotator_mask=None,
-            from_scratch = True,
-            plot_to_tensorboard = True,
-            train_phase = "train"):
+    def training(self, new_active_x, new_active_w, new_active_mask,batch_size = 4,n_epochs=1000, learning_rate = 0.001, device = 'cpu'):
         
-
-        if train_annotator_mask is None:
-            train_annotator_mask = np.ones_like(train_annotator_labels)
-        
-        if train_annotator_weights is None:
-            print('train_annotator_lp_weights : ',train_annotator_labels)
-            print('train_annotator_mask : ',train_annotator_mask)
-            train_annotator_weights = self.get_annotator_lp_weights(train_annotator_labels, train_annotator_mask)
-
-        train_dataset = TensorDataset(torch.tensor(train_x.to_numpy()).float(), torch.tensor(train_annotator_labels.to_numpy()), torch.tensor(train_annotator_weights.to_numpy()), torch.tensor(train_annotator_mask.to_numpy()), torch.tensor(train_y.to_numpy()))
-        train_dataloader = DataLoader(train_dataset, batch_size = args["batch_size"], shuffle=True) # Need to change batch_size to args.batch_size
-
-        if eval_x is not None and eval_annotator_labels is not None:
-            evaluate = True
-        else:
-            evaluate = False
-
-        if from_scratch:
-            self.model = self.initialize_model()
-
-        optimizer = torch.optim.Adam(self.model.parameters(), lr = args["lr"]) # Change learning rate to args
-        criterion_annotator = torch.nn.MSELoss()
-        epoch_loss = []
-        losses = []
-        accuracy = []
-        f1 = []
-        for epoch in range(args["n_epochs"]):
-            batch_loss = []
-            y_pred = []
-            y_true = []
-            for batch in train_dataloader:
+        optimizer=torch.optim.Adam(self.model.parameters(), lr=learning_rate)
+        criterion_annotator = nn.MSELoss()
+        data_set=Data_AL(new_active_x.to_numpy(),new_active_w.to_numpy(),new_active_mask.to_numpy())
+        trainloader=DataLoader(dataset=data_set,batch_size=batch_size)
+        loss_list = []
+        for epoch in range(n_epochs):
+            epoch_loss = 0
+            for x, y, mask in trainloader:
+                x = torch.tensor(x,dtype=torch.float32).to(device)
+                #clear gradient 
                 optimizer.zero_grad()
-
-                x, annotator_labels, annotator_weights, annotator_mask, y = batch
-                x = x.to(self.device)
-                annotator_weights = annotator_weights.to(self.device)
-                annotator_mask = annotator_mask.to(self.device)
-
-                output = self.model(x)
-                
-                # loss = criterion_annotator(output, annotator_weights.float())
-                loss = torch.sum(((output - annotator_weights) * annotator_mask)**2.0) / torch.sum(annotator_mask)
-                batch_loss.append(loss.item())
-                
+                #make a prediction 
+                z = self.model(x)
+                y = y.squeeze(1)
+                y = y.type(torch.FloatTensor).to(device)
+                mask = mask.to(device)
+                x1 = torch.mul(mask,z)
+                x2 = torch.mul(mask,y)
+                loss = criterion_annotator(x1,x2)
+                    
+                # calculate gradients of parameters 
                 loss.backward()
+                epoch_loss += loss.to('cpu').data
+                # update parameters 
                 optimizer.step()
-
-                y_true += list(y.numpy())
-                if args["labeling_type"] == "weighted":
-                    y_predicted, _ = get_weighted_labels(annotator_labels.numpy(), output.detach().cpu().numpy(), annotator_mask.cpu().numpy())
-                elif args["labeling_type"] == "max":
-                    y_predicted, _ = get_max_labels(annotator_labels.numpy(), output.detach().cpu().numpy(), annotator_mask.cpu().numpy())
-                y_pred += y_predicted
-
-
-            accuracy.append(accuracy_score(y_true=y_true, y_pred=y_pred))
-            f1.append(f1_score(y_true=y_true, y_pred=y_pred,average=args["f1_score"]))
-
-            epoch_loss.append(sum(batch_loss) / len(batch_loss))
-            losses.append(sum(batch_loss) / len(batch_loss))
-            losses.append(sum(batch_loss) / len(batch_loss))
-            # print(f"Epoch: {epoch+1} \t Loss: {losses[-1]} \t Accuracy: {accuracy[-1]} \t F1: {f1[-1]}")
-            if (epoch + 1) % args["log_epochs"] == 0:
-                tqdm.write(f"Epoch: {epoch+1} \t Loss: {losses[-1]} \t Accuracy: {accuracy[-1]} \t F1: {f1[-1]}")
-                if self.writer and plot_to_tensorboard:
-                    self.write_to_tensorboard(epoch=epoch, data={"loss": losses[-1], "accuracy": accuracy[-1], "f1": f1[-1]}, type=f"{train_phase}/train")
-                if evaluate:
-                    self.eval(epoch=epoch, eval_x=eval_x, eval_annotator_labels=eval_annotator_labels, eval_annotator_weights=eval_annotator_weights, eval_y=eval_y, eval_annotator_mask=eval_annotator_mask, 
-                              labeling_type=args["labeling_type"], plot_to_tensorboard=plot_to_tensorboard, eval_phase=train_phase)
-        self.writer.flush()
-
-        if train_phase=="boot":
-            path = os.path.join(args["Path_results"],"Annotator_Warmup.png")
-            plt.plot(epoch_loss)
-            plt.xlabel("warmup epochs")
-            plt.ylabel("loss")
-            plt.title("Annotator Warmup")
-            plt.savefig(path)
-        return losses, accuracy, f1
-
-
-    def eval(
-            self,
-            epoch,
-            eval_x,
-            eval_annotator_labels, 
-            eval_annotator_weights=None, 
-            eval_y=None, 
-            eval_annotator_mask=None,
-            labeling_type="max",
-            plot_to_tensorboard=True,
-            eval_phase="boot"
-    ):
-        if eval_annotator_mask is None:
-            eval_annotator_mask = np.ones_like(eval_annotator_labels)
+                
+            loss_list.append(epoch_loss/batch_size)
+            #print('epoch {}, loss {}'.format(epoch, loss_list[-1]))  
         
-        if eval_annotator_weights is None:
-            eval_annotator_weights = self.get_annotator_lp_weights(eval_annotator_labels, eval_annotator_mask)
-
-        eval_dataset = TensorDataset(torch.tensor(eval_x).float(), torch.tensor(eval_annotator_labels), torch.tensor(eval_annotator_weights), torch.tensor(eval_annotator_mask), torch.tensor(eval_y))
-        eval_dataloader = DataLoader(eval_dataset, batch_size=8, shuffle=False)
-
-        self.model.eval()
+        # plt.figure()
+        # plt.plot(loss_list)
+        # plt.title('Annotator Model Training')
+        # plt.xlabel('Epoch')
+        # plt.ylabel('Loss')
         
-        criterion_annotator = torch.nn.MSELoss()
-
-        eval_loss = []
-        y_true = []
-        y_pred = []
-        for batch in tqdm(eval_dataloader):
-            x, annotator_labels, annotator_weights, annotator_mask, y = batch
-            x = x.to(self.device)
-            annotator_weights = annotator_weights.to(self.device)
-            annotator_mask = annotator_mask.to(self.device)
-
-            with torch.no_grad():
-                output = self.model(x)
-
-            loss = torch.sum(((output - annotator_weights) * annotator_mask)**2.0) / torch.sum(annotator_mask)
-            eval_loss.append(loss.item())
-
-            y_true += list(y.numpy())
-            if labeling_type == "weighted":
-                y_predicted, _ = get_weighted_labels(annotator_labels.numpy(), output.detach().cpu().numpy(), annotator_mask.cpu().numpy())
-            elif labeling_type == "max":
-                y_predicted, _ = get_max_labels(annotator_labels.numpy(), output.detach().cpu().numpy(), annotator_mask.cpu().numpy())
-            y_pred += y_predicted
-
-        
-        self.model.train()
-        
-        accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
-        f1 = f1_score(y_true=y_true, y_pred=y_pred)
-        eval_loss = sum(eval_loss) / len(eval_loss)
-        tqdm.write(f"Eval Loss: {eval_loss} \t Eval Accuracy: {accuracy} \t Eval F1: {f1}")
-
-        if self.writer:
-            self.write_to_tensorboard(epoch=epoch, data={"loss": eval_loss, "accuracy": accuracy, "f1": f1}, type=f"{eval_phase}/val")
+        return loss_list
 
 
-    def get_annotator(self, instance, annotator_mask, annotator_weights=None):
-        '''For the given instance, select the annotator with the highest weight from the annotators whose mask is 0 (have not been queried).
-            if annotator weight is none, the get weights from the model, else use the annotator weights.
-        '''
-
-        if annotator_weights == None:
-            annotator_weights = self.get_annotator_model_weights(instances=instance)
-
-        annotator_weights = annotator_weights * (1 - annotator_mask)
-
-        annotator_idx = torch.argmax(annotator_weights).item()
-
-        return annotator_idx
+    

@@ -8,10 +8,11 @@ import torch
 import torch.nn as nn
 import os
 import warnings
+import random
 import pandas as pd
 import matplotlib.pyplot as plt
 from classifier.warmup import warmedup_classifiers
-#from annotator.trainer import annotator_warmup
+from annotator.warmup import annotator_warmup
 from annotator.evaluation import annot_eval_after_warmup,annotator_AL_loss,annot_eval_after_training
 from AL_design.train_scheme import AL_train_cycle_KB,AL_train_cycle,AL_train_majority,AL_train_MAPAL_instances
 from data_processing.read_data import generate_MAPAL_data,generate_new_data
@@ -40,6 +41,12 @@ class MultiAnnotatorActiveLearner:
         self.Classifiers = [ClassifierModel(self.args.classifier_name, self.n_features, self.n_classes, LR_max_iter = self.args.LR_max_iter, device=self.device) for i in range(4)]
 
         self.Knowledge_Base = dict()
+    
+    def set_seed(self,seed: int = 1) -> None:  
+        np.random.seed(seed)
+        random.seed(seed)
+        torch.manual_seed(seed)
+        print(f"Random seed set as {seed}")
     
     def create_classifier_annotator_metrics_dictionary(self):
         scores = dict()
@@ -113,11 +120,23 @@ class MultiAnnotatorActiveLearner:
         training_args["f1_score"] = self.args.f1_average
         training_args["Path_results"] = self.args.Path_results
         # Train annotator model on boot data with all annotators
-        self.annotator_selector.warmup(training_args, self.boot_x, self.boot_annotator_labels, self.boot_y)
+        boot_mask = np.ones_like(self.boot_annotator_labels)
+
+        # self.set_seed(self.args.seed)
+
+        self.boot_optimal_weights,loss_list = self.annotator_selector.warmup( self.boot_x, self.boot_annotator_labels,mask = boot_mask, batch_size=self.args.boot_batchsize,\
+                                                              n_epochs= self.args.boot_n_epochs, learning_rate = self.args.boot_lr, device = self.device)
         BOOT = [self.boot_x, self.boot_y, self.boot_annotator_labels]
         TEST = [self.test_x, self.test_y, self.test_annotator_labels]
 
-        self.Classifiers, self.Classifiers_y_boot = warmedup_classifiers(self.Classifiers, BOOT,self.annotator_selector.model,self.annotator_selector.boot_optimal_weights,self.device)
+        # path = os.path.join(self.args.Path_results,"Annotator_Warmup.png")
+        # plt.plot(loss_list)
+        # plt.xlabel("warmup epochs")
+        # plt.ylabel("loss")
+        # plt.title("Annotator Warmup")
+        # plt.savefig(path)
+        
+        self.Classifiers, self.Classifiers_y_boot = warmedup_classifiers(self.Classifiers, BOOT,self.annotator_selector.model,self.boot_optimal_weights,self.device)
         
         if self.args.use_Knowledge_Base: 
             annot_eval_after_warmup(self.annotator_selector.model,BOOT,self.classifier_annotator_scores_log["data_a"],self.args.f1_average)
@@ -127,7 +146,7 @@ class MultiAnnotatorActiveLearner:
             classf_eval_after_warmup(self.Classifiers,BOOT,TEST,self.classifier_annotator_scores_log["data_c"],average = self.args.f1_average)
         
         create_knowledge_base(self.Knowledge_Base,self.annotator_selector.model,BOOT)
-
+        Knowledge_Base_Metrics(self.Knowledge_Base,self.boot_y,self.args.Path_results,self.args.exp_txt_path,average=self.args.f1_average)
     
     def active_learning_phase(self):
 
@@ -138,9 +157,9 @@ class MultiAnnotatorActiveLearner:
 
         if self.args.method == "KB":
             self.Classifiers, self.annotator_selector.model,indexes,collected_active_data,similar_instances,loss, inst_annot,full, c_a, c_f = AL_train_cycle_KB(self.Classifiers,self.Classifiers_y_boot,self.annotator_selector,self.Knowledge_Base,TRAIN.copy(),BOOT.copy(),ACTIVE.copy(),TEST.copy(),
-                self.annotator_selector.boot_optimal_weights,self.budget, self.args, device = self.device) 
+                self.boot_optimal_weights,self.budget, self.args, device = self.device) 
             new_active_x,new_active_y_true,new_active_y_annot,new_active_y,new_active_y_opt,new_active_y_majority,new_active_w,new_active_mask = collected_active_data
-            count_instances(self.args.exp_txt_path,self.Knowledge_Base,new_active_x)
+            count_instances(self.args.exp_txt_path,self.Knowledge_Base,new_active_x) 
             Knowledge_Base_Metrics(self.Knowledge_Base,new_active_y,self.args.Path_results,self.args.exp_txt_path,average=self.args.f1_average)
         elif self.args.method == "AM":
             self.Classifiers, self.annotator_selector.model,indexes,collected_active_data,loss, inst_annot,full, c_a, c_f = AL_train_cycle(self.Classifiers,self.Classifiers_y_boot,self.annotator_selector,BOOT.copy(),ACTIVE.copy(),TEST.copy(),
@@ -178,8 +197,8 @@ class MultiAnnotatorActiveLearner:
 
         with open(self.args.exp_txt_path, 'a') as f:
             f.write("\n\nFully Supervised\n")
-            f.write(str(accuracy))
-            f.write(str(f1))
+            f.write("\nAccuracy : "+str(accuracy))
+            f.write("\nF1 Score : "+str(f1))
     
     def save_metrics(self):
         path_classifier = os.path.join(self.args.Path_results,"Classifier_Metrics.csv")

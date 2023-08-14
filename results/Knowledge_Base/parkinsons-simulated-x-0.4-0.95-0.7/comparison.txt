@@ -1,0 +1,153 @@
+{
+  "dataset": "parkinsons-simulated-x",
+  "data_folder_path": "/Users/kaizer/Documents/Active Learning/Code/MAAL/Multi-Annotator-HIL/datasets",
+  "budget_frac": 0.4,
+  "boot_size": 0.05,
+  "test_size": 0.4,
+  "boot_lr": 0.001,
+  "boot_n_epochs": 3000,
+  "boot_log_epochs": 30000,
+  "boot_batchsize": 4,
+  "active_lr": 0.001,
+  "active_n_epochs": 3000,
+  "active_log_epochs": 20000,
+  "active_batchsize": 16,
+  "hidden_dim": 32,
+  "instance_strategy": "random",
+  "method": "KB",
+  "LR_max_iter": 20000,
+  "classifier_name": "logistic_regression",
+  "f1_average": "macro",
+  "log_dir": "logs/iris-simulated-x/",
+  "seed": 1,
+  "labeling_type": "max",
+  "exp_name": "Trial_1",
+  "use_Knowledge_Base": true,
+  "similarity_threshold": 0.95,
+  "weight_threshold": 0.7,
+  "data_source": "mapal",
+  "w_opt": 1,
+  "rl_flag": 0,
+  "ee_ratio": 0.8,
+  "Data_path": "/Users/kaizer/Documents/Active Learning/Code/MAAL/Multi-Annotator-HIL/datasets/parkinsons-simulated-x.csv",
+  "Path_results": "results/Knowledge_Base/parkinsons-simulated-x-0.4-0.95-0.7",
+  "Path_mapal_data": "data_processing\\parkinsons-simulated-x-0.4",
+  "exp_txt_path": "results/Knowledge_Base/parkinsons-simulated-x-0.4-0.95-0.7/comparison.txt"
+}
+
+MAPAL Accuracy : 0.7692307692307693
+
+
+
+Number of classes : 2
+
+
+
+Fully Supervised
+0.74358974358974360.6741854636591478
+
+
+Total number of Active Learning Instances : 61
+
+
+
+Extra instances added due to knowledge base similarity : 28
+
+
+
+KNOWLEDGE BASE METRICS
+
+   No. of Instances  Accuracy  f1-score
+2                20  0.900000  0.843750
+0                13  1.000000  1.000000
+4                 7  1.000000  1.000000
+1                 6  0.833333  0.828571
+3                14  1.000000  1.000000
+
+
+SIMILAR INSTANCES METRICS
+
+     No. of similar Instances   Similar Instances  Similar Instances Shared Label  Accuracy  f1-score  Annotator
+24                          4  [101, 70, 191, 88]                               1  1.000000       1.0          2
+71                          4   [0, 13, 125, 192]                               0  0.000000       0.0          2
+9                           3         [10, 8, 80]                               1  0.666667       0.4          2
+80                          1                [79]                               1  0.000000       0.0          2
+75                          1                [77]                               0  1.000000       1.0          2
+133                         1               [183]                               1  1.000000       1.0          2
+183                         1                [50]                               1  1.000000       1.0          2
+122                         1               [126]                               0  1.000000       1.0          0
+101                         1               [160]                               1  1.000000       1.0          0
+68                          1                [20]                               0  0.000000       0.0          0
+134                         1               [138]                               1  1.000000       1.0          0
+138                         1               [137]                               1  1.000000       1.0          0
+15                          1               [184]                               1  0.000000       0.0          4
+8                           1                [76]                               1  0.000000       0.0          3
+83                          3       [173, 7, 129]                               1  0.666667       0.4          3
+135                         2           [55, 161]                               1  1.000000       1.0          3
+129                         1               [131]                               0  0.000000       0.0          3
+
+
+ANNOTATOR MODEL PREDICTED LABELS VS TRUE LABELS
+Accuracy : 0.6721311475409836
+F1 Score : 0.5579710144927537
+Confusion Matrix[[ 5 14]
+ [ 6 36]]
+Classification Report              precision    recall  f1-score   support
+
+           0       0.45      0.26      0.33        19
+           1       0.72      0.86      0.78        42
+
+    accuracy                           0.67        61
+   macro avg       0.59      0.56      0.56        61
+weighted avg       0.64      0.67      0.64        61
+
+
+W OPTIMAL LABELS VS TRUE LABELS
+Accuracy : 0.819672131147541
+F1 Score : 0.7621410847217298
+Confusion Matrix[[10 10]
+ [ 1 40]]
+Classification Report              precision    recall  f1-score   support
+
+           0       0.91      0.50      0.65        20
+           1       0.80      0.98      0.88        41
+
+    accuracy                           0.82        61
+   macro avg       0.85      0.74      0.76        61
+weighted avg       0.84      0.82      0.80        61
+
+
+MAJORITY LABELS VS TRUE LABELS
+Accuracy : 0.8032786885245902
+F1 Score : 0.7458333333333333
+Confusion Matrix[[10 11]
+ [ 1 39]]
+Classification Report              precision    recall  f1-score   support
+
+           0       0.91      0.48      0.62        21
+           1       0.78      0.97      0.87        40
+
+    accuracy                           0.80        61
+   macro avg       0.84      0.73      0.75        61
+weighted avg       0.82      0.80      0.78        61
+
+
+Compostion of instance and number of queried annotators
+[0, 1, 2, 5]
+[56, 3, 1, 52]
+
+
+CLASSIFIER METRICS
+
+                 After Warmup Accuracy on Boot Data  After Warmup F1 Score on Boot Data  After Warmup Accuracy on Validation Data  After Warmup F1 Score on Validation Data  After Training Accuracy on Validation Data  After Training F1 Score on Validation Data
+Annotator Model                                 0.8                            0.761905                                  0.615385                                  0.435873                                    0.666667                                    0.488911
+W Optimal                                       0.8                            0.761905                                  0.615385                                  0.435873                                    0.653846                                    0.588913
+Majority                                        0.8                            0.761905                                  0.615385                                  0.435873                                    0.653846                                    0.598322
+True Labels                                     1.0                            1.000000                                  0.666667                                  0.434152                                    0.743590                                    0.674185
+
+
+ANNOTATOR METRIC
+
+                  Annotator Accuracy after Warmup on Boot Data  Annotator F1 Score after Warmup on Boot Data  Annotator Accuracy after Training  Annotator F1 Score after Training
+Weighted Average                                           0.8                                      0.761905                           0.819672                           0.751205
+Maximum Index                                              0.8                                      0.761905                           0.836066                           0.768237
