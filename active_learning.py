@@ -87,7 +87,7 @@ class MultiAnnotatorActiveLearner:
             self.budget = budget
             Mapal_Data_Frame = pd.read_csv(MAPAL_results_path)
             Mapal_Data_Frame_len = Mapal_Data_Frame.shape[0]
-            self.Mapal_accuracy = 1 - Mapal_Data_Frame['test-micro-misclf-rate'].loc[Mapal_Data_Frame_len-1]
+            self.Mapal_accuracy = 1 - Mapal_Data_Frame['test-micro-misclf-rate'].iloc[-1]
             with open(args.exp_txt_path, 'a') as f:
                 f.write("\n\nMAPAL Accuracy : "+str(self.Mapal_accuracy)+"\n\n")
 
